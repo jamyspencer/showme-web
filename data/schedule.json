@@ -1,0 +1,114 @@
+[
+    {
+      "start": "2025-04-11T18:00",
+      "end": "2025-04-11T19:00",
+      "room": "Primary Ballroom",
+      "label": "Workshop - Bonnie",
+      "type": "workshop"
+    },
+    {
+      "start": "2025-04-11T18:30",
+      "end": "2025-04-11T19:30",
+      "room": "Staff Room",
+      "label": "Staff Meeting",
+      "type": "staff"
+    },
+    {
+      "start": "2025-04-11T20:15",
+      "end": "2025-04-11T20:30",
+      "room": "Primary Ballroom",
+      "label": "Opening Ceremonies",
+      "type": "event"
+    },
+    {
+      "start": "2025-04-11T20:30",
+      "end": "2025-04-11T22:00",
+      "room": "Primary Ballroom",
+      "label": "Pro-Am Jack & Jills Novice, Intermediate, Masters",
+      "type": "comp"
+    },
+    {
+      "start": "2025-04-11T22:00",
+      "end": "2025-04-11T22:30",
+      "room": "Primary Ballroom",
+      "label": "All-Star Jack & Jill",
+      "type": "comp"
+    },
+    {
+      "start": "2025-04-11T22:30",
+      "end": "2025-04-11T24:00",
+      "room": "Primary Ballroom",
+      "label": "Awards Followed by Open Dancing",
+      "type": "event"
+    },
+    {
+      "start": "2025-04-12T24:00",
+      "end": "2025-04-12T01:00",
+      "room": "Primary Ballroom",
+      "label": "Dirty Hour \"No Music Language Restrictions\"",
+      "type": "open dance"
+    },
+    {
+      "start": "2025-04-12T01:00",
+      "end": "2025-04-12T03:00",
+      "room": "Primary Ballroom",
+      "label": "Late Night Dancing till????",
+      "type": "open dance"
+    },
+    {
+      "start": "2025-04-12T07:00",
+      "end": "2025-04-12T09:00",
+      "room": "Primary Ballroom",
+      "label": "Routine Floor trials",
+      "type": "private"
+    },
+    {
+      "start": "2025-04-12T09:00",
+      "end": "2025-04-12T10:00",
+      "room": "Primary Ballroom",
+      "label": "Workshop - Matt and Julie Auclair",
+      "type": "workshop"
+    },
+    {
+      "start": "2025-04-12T10:00",
+      "end": "2025-04-12T11:00",
+      "room": "Primary Ballroom",
+      "label": "Workshop - Follower Styling with Lindsay Mistretta & Maria Bileychik",
+      "type": "workshop"
+    },
+    {
+      "start": "2025-04-12T11:00",
+      "end": "2025-04-12T12:00",
+      "room": "Primary Ballroom",
+      "label": "Workshop - Jeanne DeGeyter & T-Rose \"Masters Class\" for Masters",
+      "type": "workshop"
+    },
+    {
+      "start": "2025-04-12T12:00",
+      "end": "2025-04-12T12:30",
+      "room": "Primary Ballroom",
+      "label": "Ballroom Opens",
+      "type": "event"
+    },
+    {
+      "start": "2025-04-12T12:30",
+      "end": "2025-04-12T14:30",
+      "room": "Primary Ballroom",
+      "label": "Jack and Jill Newcomer, Intermediate & Masters Prelims & Finals",
+      "type": "comp"
+    },
+    {
+      "start": "2025-04-12T14:30",
+      "end": "2025-04-12T16:30",
+      "room": "Primary Ballroom",
+      "label": "Jack and Jill Novice, Advanced Prelims & Finals",
+      "type": "comp"
+    },
+    {
+      "start": "2025-04-12T16:30",
+      "end": "2025-04-12T17:30",
+      "room": "Primary Ballroom",
+      "label": "Social Dancing",
+      "type": "open dance"
+    }
+  ]

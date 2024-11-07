@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/img/favicon.png"/>
+    <link rel="stylesheet" href="./style/main.css">
+    <title>Showme Showdown</title>
+</head>
+<body>
+    <script type="module" src="main.js"></script>
+    <nav-controller class="">
+        <nav class="flex flex-row justify-between py-3 px-10">
+            <img class="logo" src="/img/showme-logo-alt.svg" alt="Showme Showdown Logo">
+            <div class="links flex flex-row">
+                <nav-link href="/">HOME</nav-link>
+                <nav-link href="/hotel">HOTEL</nav-link>
+                <nav-link href="/registration">REGISTRATION</nav-link>
+                <nav-link href="/staff">STAFF</nav-link>
+                <nav-link href="/schedule">SCHEDULE</nav-link>
+            </div>
+        </nav>
+        <div id="page-container"></div>
+    </nav-controller>
+    <template  id="home-page-template">
+
+    </template>
+    <template id="hotel-page-template">
+        <img class="w-9/12 mx-auto" src="/img/hilton-foyer.webp" alt="">
+        <div class="w-9/12 mx-auto mt-5" >
+            <h1 class="text-2xl font-bold">HILTON ST. LOUIS - AIRPORT HOTEL</h1>
+            <p class="mt-3">Hilton St. Louis Airport in St. Louis, Missouri is located across from St. Louis Lambert International Airport, just minutes from downtown.</p>
+            <p class="mt-3">Our amenities include our hotel restaurant, World's Apart, featuring a full menu or a hot Hilton diverse breakfast, lunch and dinner, and access to our complimentary 24-hour business and fitness centers.</p>
+            <p class="mt-3">PET FRIENDLY!</p>
+            <p class="mt-3">FREE 24 HOUR SHUTTLE TO/FROM LAMBERT ST. LOUIS AIRPORT!</p>
+            <a href="<%= contact.address.googleMapUrl %>">
+                <p class="mt-3"><%= contact.address.line1.toUpperCase() %></p>
+                <p><%= contact.address.line2.toUpperCase() %></p>
+            </a>
+        </div>
+    </template>
+    <template id="registration-page-template">
+
+    </template>
+    <template id="staff-page-template">
+        <div class="w-9/12 mx-auto mt-5" >
+            <h1 class="text-3xl font-bold mx-auto">SHOWME PROS</h1>
+            <image-container class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 my-4">
+                <image-holder src="/img/staff/matt_julie.webp" name="MATT & JULIE AUCLAIR"></image-holder>
+                <image-holder src="/img/staff/jeanne_degeyter.webp" name="JEANNE DEGEYTER"></image-holder>
+                <image-holder src="/img/staff/jessie_ariel.webp" name="JESSE LOPEZ & ARIEL PECK"></image-holder>
+                <image-holder src="/img/staff/terry_roseborough.webp" name="TERRY ROSEBOROUGH"></image-holder>
+                <image-holder src="/img/staff/bonnie_cannon.webp" name="BONNIE CANNON"></image-holder>
+                <image-holder src="/img/staff/kris_swearingen.webp" name="KRIS SWEARINGEN"></image-holder>
+                <image-holder src="/img/staff/bryan_jordan.webp" name="BRYAN JORDAN"></image-holder>
+                <image-holder src="/img/staff/janie_deroche.webp" name="JANIE DEROCHE"></image-holder>
+            </image-container>
+            <h1 class="text-3xl font-bold mx-auto">SHOWME STAFF</h1>
+            <image-container class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 my-4">
+                <image-holder src="/img/staff/oscar_hampton.webp" name="OSCAR HAMPTON"></image-holder>
+                <image-holder src="/img/staff/eric_byers.webp" name="ERIC BYERS"></image-holder>
+                <image-holder src="/img/staff/lindsay_mistretta.webp" name="LINDSAY MISTRETTA"></image-holder>
+                <image-holder src="/img/staff/tim_acosta.webp" name="TIM ACOSTA"></image-holder>
+                <image-holder src="/img/staff/jordan_sims.webp" name="JORDAN SIMS"></image-holder>
+                <image-holder src="/img/staff/jennifer_nye.webp" name="JENNIFER NYE"></image-holder>
+                <image-holder src="/img/staff/maria_bileychik.webp" name="MARIA BILEYCHIK"></image-holder>
+                <image-holder src="/img/staff/david_brown.webp" name="DAVID BROWN"></image-holder>
+                <image-holder src="/img/staff/christine_medine.webp" name="CHRISTINE MEDINE"></image-holder>
+            </image-container>
+        </div>
+    </template>
+    <template id="schedule-page-template">
+        <div class="w-9/12 max-w-4xl mx-auto mt-5" >
+            <showme-schedule>
+            <% for(const item of schedule) { %> 
+                <schedule-entry start="<%= item.start %>" end="<%= item.end %>" room="<%= item.room %>" label="<%= item.label %>" type="<%= item.type %>" ></schedule-entry>  <% } %>
+            </showme-schedule>
+        </div>
+    </template>
+    <template id="not-found-page-template">
+        <h1>NOT FOUND</h1>
+    </template>
+</body>
+</html>
