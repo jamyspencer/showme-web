@@ -24,7 +24,7 @@
     </nav-controller>
     <% for(const view of views) { %>
     <template id="<%= view.name %>-page-template">
-        <page-content class="w66-md w75-lg mx-auto">
+        <page-content class="p-18 w66-md w75-lg mx-auto">
         <%- include(`./views/${view.name}.html`) %>
         </page-content>
     </template>

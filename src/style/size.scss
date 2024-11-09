@@ -50,6 +50,9 @@
     .rnd-#{$p} {
         border-radius: #{$p}+"px";
     }
+    .fnt-#{$p} {
+        font-size: #{$p}+"px";
+    }
 }
 
 .w-fc {
