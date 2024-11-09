@@ -1,0 +1,27 @@
+[
+    {
+        "name": "home",
+        "href": "/",
+        "meta": ""
+    },
+    {
+        "name": "hotel",
+        "href": "/hotel",
+        "meta": ""
+    },
+    {
+        "name": "registration",
+        "href": "/registration",
+        "meta": ""
+    },
+    {
+        "name": "staff",
+        "href": "/staff",
+        "meta": ""
+    },
+    {
+        "name": "schedule",
+        "href": "/schedule",
+        "meta": ""
+    }
+]

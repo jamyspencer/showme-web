@@ -1,0 +1,21 @@
+
+
+image-container {
+    display: grid;
+    gap: 20px;
+  
+  }  
+  image-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+  showme-schedule {
+    
+  }
+  
+  schedule-entry{
+    margin-bottom: 8px;
+    border-bottom: 3px solid #49bc7f;
+  }

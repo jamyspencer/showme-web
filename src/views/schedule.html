@@ -1,0 +1,6 @@
+<div class="mt-10" >
+    <showme-schedule>
+    <% for(const item of schedule) { %> 
+        <schedule-entry start="<%= item.start %>" end="<%= item.end %>" room="<%= item.room %>" label="<%= item.label %>" type="<%= item.type %>" ></schedule-entry>  <% } %>
+    </showme-schedule>
+</div>

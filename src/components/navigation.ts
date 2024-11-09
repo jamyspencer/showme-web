@@ -1,6 +1,9 @@
+import { PageContainer, PageContent, pageContainerGuard } from "./page"
+
 class NavLink extends HTMLElement{
+    href?: string
     connectedCallback() {
-        this.href = this.attributes.getNamedItem('href').value
+        this.href = this.attributes.getNamedItem('href')?.value
         this.addEventListener('click', this.handleClick)
     }
 
@@ -9,11 +12,27 @@ class NavLink extends HTMLElement{
     }
 
     handleClick(){
+        this.animate([
+            {transform: "scale(1)"},
+            {transform: "scale(1.1)"},
+            {transform: "scale(1)"}
+        ],{duration: 600})
         this.dispatchEvent(new CustomEvent('nav', {detail: {href: this.href }, bubbles: true}))
-    }
+        const siblings = this.parentElement ? this.parentElement.children : []
+        for (const sibling of siblings ) {
+            if (sibling instanceof NavLink) {
+                sibling.classList.remove('active')
+            }
+        }
+        this.classList.add('active')
+    } 
+    
 }
 
 class NavController extends HTMLElement {
+    hydratedPages: Record<string, PageContent>
+    pageContainer?: PageContainer
+
     connectedCallback() {
         window.addEventListener('nav', this.handleNavEvent)
         window.addEventListener('popstate', this.handlePopState)
@@ -28,7 +47,10 @@ class NavController extends HTMLElement {
     }
 
     initialLoad = event => {
-        const id = this.parseIdFromPath()
+        let id = this.parseIdFromPath()
+        if (id == ''){
+            id = 'home'
+        }
         this.internalNavigation(id, true)
     }
 
@@ -40,10 +62,7 @@ class NavController extends HTMLElement {
 
     handleNavEvent = (event) => {
         let href = event.detail.href;
-        if (href == null) {
-            href = '/'
-        }
-        let id = href.slice(1)
+        let id = href == null ? this.parseIdFromPath() : href.slice(1)
         if (id == ''){
             id = 'home'
         }
@@ -51,10 +70,7 @@ class NavController extends HTMLElement {
         this.internalNavigation(id)
     }
 
-    internalNavigation = (id, initial = false) => {
-        if (id == null){
-            id = this.parseIdFromPath()
-        }
+    internalNavigation = (id: string, initial = false) => {
         //Check if page has been hydrated
         let hydratedPage = this.hydratedPages[id];
         
@@ -78,7 +94,7 @@ class NavController extends HTMLElement {
         }
     }
 
-    parseIdFromPath(){
+    parseIdFromPath(): string{
         let id = location.pathname;
         while(id.indexOf('/') == 0){
             id = id.slice(1)
@@ -87,7 +103,7 @@ class NavController extends HTMLElement {
         return arr[0]
     }
 
-    changePages = (pageToOpen, initial = false) => {
+    changePages = (pageToOpen: PageContent, initial = false) => {
         if (initial){
             pageToOpen.classList.add('open')
             return
@@ -112,17 +128,19 @@ class NavController extends HTMLElement {
 
     hydratePage(id, template) {
         const cloneFragment = template.content.cloneNode(true)
-        const page = document.createElement('div')
-        page.id = `${id}-page`
-        page.classList.add('page')
-        page.appendChild(cloneFragment)
-        this.querySelector('#page-container').appendChild(page)
+        const page = cloneFragment.children[0]
+        this.pageContainer?.appendChild(cloneFragment)
         this.hydratedPages[id] = page
         return page
     }
 
+    attachPageContainer(pageContainer: PageContainer){
+        if (pageContainerGuard(pageContainer)){
+            this.pageContainer = pageContainer
+        }
+    }
 }
-const slideOut = (elementOut, elementIn) => {
+const slideOut = (elementOut: HTMLElement, elementIn: HTMLElement) => {
     elementOut.animate([
         {transform: "translateX(0)"},
         {transform: "translateX(100vw)"}
@@ -133,7 +151,7 @@ const slideOut = (elementOut, elementIn) => {
     }
 }
 
-const slideIn = elem =>{
+const slideIn = (elem: HTMLElement) =>{
     elem.classList.add('left')
     elem.animate([
         {transform: "translateX(-100vw)"},

@@ -9,6 +9,7 @@ class ImageHolder extends HTMLElement {
         frag.appendChild(img)
         const text = document.createElement('span')
         text.innerText = this.name
+        text.classList.add('py-8')
         frag.appendChild(text)
 
         this.appendChild(frag)

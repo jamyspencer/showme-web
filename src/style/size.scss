@@ -1,0 +1,57 @@
+@use 'vars';
+
+@mixin margin-padding($media-query) {
+    @if ($media-query) {
+        $media-query: "-"+$media-query;
+    } @else {
+        $media-query: "";
+    }
+    @each $p in vars.$px {
+        @each $name, $style in vars.$sizing-styles {
+            .#{$name}-#{$p}#{$media-query} {
+                #{$style}: #{$p}px;
+            }
+            @each $dir, $val in vars.$directions {
+                .#{$name}#{$dir}-#{$p}#{$media-query}  {
+                    #{$style}-#{$val}: #{$p}px;
+                }
+            }
+            .#{$name}x-#{$p}#{$media-query}  {
+                #{$style}-left: #{$p}px;
+                #{$style}-right: #{$p}px;
+            }
+            .#{$name}y-#{$p}#{$media-query}  {
+                #{$style}-top: #{$p}px;
+                #{$style}-bottom: #{$p}px;
+            }
+        }
+    }
+    .mx-auto#{$media-query} {
+        margin: 0 auto;
+    }
+}
+@mixin width($media-query) {
+    @if ($media-query) {
+        $media-query: "-"+$media-query;
+    } @else {
+        $media-query: "";
+    }
+    @each $p, $val in vars.$percentage {
+        .w#{$p}#{$media-query} {
+            width: #{$val};
+        }
+    }
+}
+
+@include margin-padding(null);
+@include width(null);
+
+@each $p in vars.$px {
+    .rnd-#{$p} {
+        border-radius: #{$p}+"px";
+    }
+}
+
+.w-fc {
+    width: fit-content;
+}

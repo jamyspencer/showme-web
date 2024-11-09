@@ -1,0 +1,10 @@
+@use 'vars';
+
+@each $color, $value in vars.$colors {
+    .c-#{$color} {
+        color: #{$value}
+    }
+    .bg-#{$color} {
+        background-color: #{$value}
+    }
+}

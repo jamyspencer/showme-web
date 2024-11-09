@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/img/favicon.png"/>
+    <link rel="stylesheet" href="./style/main.scss">
+    <title>Showme Showdown</title>
+</head>
+<body>
+    <script type="module" src="./main.js"></script>
+    <nav-controller class="p-12 ">
+        <nav class="py-4 px-12">
+            <img class="logo" src="/img/showme-logo-alt.svg" alt="Showme Showdown Logo">
+            <div class="links flex flex-row">
+            <% for(const view of views) { %>
+                <nav-link class="px-12" href="<%=  view.href %>"><%=  view.name.toUpperCase() %></nav-link>
+            <% } %>
+            </div>
+        </nav>
+        <page-container>
+
+        </page-container>
+    </nav-controller>
+    <% for(const view of views) { %>
+    <template id="<%= view.name %>-page-template">
+        <page-content class="w66-md w75-lg mx-auto">
+        <%- include(`./views/${view.name}.html`) %>
+        </page-content>
+    </template>
+    <% } %>
+</body>
+</html>
