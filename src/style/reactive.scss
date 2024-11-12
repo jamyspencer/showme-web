@@ -1,34 +1,53 @@
 @use "size";
 
 @media screen and (min-width: 800px) {
-    @include size.margin-padding("md");
-    @include size.width("md");
+  @include size.margin-padding("md");
+  @include size.width("md");
 
+  image-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-    image-container{
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+  schedule-entry {
+    display: grid;
+    grid-template-columns: 90px 90px 590px 160px;
+  }
+
+  nav-controller {
+    nav {
+      flex-direction: row;
+
+      .mobile {
+        mobile-menu-button {
+          display: none;
+        }
+      }
+
+      reactive-menu {
+        flex-direction: row;
+        transform: none;
+        position: static;
+        height:fit-content;
+        opacity: 1;
+      }
     }
-
-    schedule-entry {
-        display: grid;
-        grid-template-columns: 90px 90px 590px 160px;
-    }
+  }
 }
 
 @media screen and (min-width: 1200px) {
-    @include size.margin-padding("lg");
-    @include size.width("lg");
+  @include size.margin-padding("lg");
+  @include size.width("lg");
 
-    image-container{
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  image-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media screen and (min-width: 1600px) {
-    @include size.margin-padding("xl");
-    @include size.width("xl");
+  @include size.margin-padding("xl");
+  @include size.width("xl");
 
-    image-container{
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
+  image-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }

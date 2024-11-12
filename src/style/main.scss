@@ -2,6 +2,7 @@
 @use 'colors';
 @use 'size';
 @use 'components';
+@use 'nav';
 @use 'reactive';
 
 body {
@@ -9,45 +10,9 @@ body {
   color: vars.$green;
   font-family: "Montserrat", arial, sans-serif;
 }
-nav-link:hover {
-  cursor: pointer;
-}
-
-nav-controller {
-  margin: auto;
-  nav { 
-    display: flex;
-    flex-direction: row; 
-    justify-content: space-between;
-    
-    .logo {
-      max-width: 200px;
-      background-color: vars.$main-bg;
-    }
-    nav-link {
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.4rem;
-      max-height: 40px;
-      background-color: black;
-    }
-  }
-}
-
-page-container page-content {
-  display: none;
-}
-
-page-container page-content.open {
-  display: block;
-}
-
-page-container page-content.left {
-  display: block;
-  transform: translateX(-100vw);
-}
 
 .fnt-bld {
   font-weight: bold;
 }
+
 

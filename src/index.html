@@ -11,12 +11,19 @@
     <script type="module" src="./main.js"></script>
     <nav-controller class="p-12 ">
         <nav class="py-4 px-12">
-            <img class="logo" src="/img/showme-logo-alt.svg" alt="Showme Showdown Logo">
-            <div class="links flex flex-row">
-            <% for(const view of views) { %>
-                <nav-link class="px-12" href="<%=  view.href %>"><%=  view.name.toUpperCase() %></nav-link>
-            <% } %>
+            <div class="mobile">
+                <img class="logo" src="/img/showme-logo-alt.svg" alt="Showme Showdown Logo">
+                <mobile-menu-button>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 448 512">
+                        <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path>
+                    </svg>
+                </mobile-menu-button>
             </div>
+            <reactive-menu class="py-4-md">
+            <% for(const view of views) { %>
+                <nav-link href="<%=  view.href %>"><%=  view.name.toUpperCase() %></nav-link>
+            <% } %>
+            </reactive-menu>
         </nav>
         <page-container>
 
@@ -29,5 +36,11 @@
         </page-content>
     </template>
     <% } %>
+
+    <template id="circle-svg-template">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="50"></circle>
+        </svg>
+    </template>
 </body>
 </html>

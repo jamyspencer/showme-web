@@ -1,0 +1,79 @@
+@use "vars";
+
+nav-link:hover {
+  cursor: pointer;
+}
+
+nav-controller {
+  margin: auto;
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .mobile {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .logo {
+        width: 200px;
+        background-color: vars.$main-bg;
+      }
+      mobile-menu-button {
+        display: flex;
+        align-items: center;
+        padding: 2px 4px;
+        border: 3px solid;
+        border-radius: 6px;
+        max-width: 30px;
+        height: fit-content;
+
+        svg {
+          width: 26px;
+          fill: vars.$green;
+        }
+      }
+    }
+    reactive-menu {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      padding: 12px;
+      font-size: 1.5rem;
+      top: 80px;
+      right: 0;
+      transform: translateX(100%);
+      opacity: .2;
+      background: vars.$main-bg;
+      border-radius: 6px 6px 0;
+
+      transition: transform 1s, opacity 1s;
+      &.open {
+        transform: translateX(0);
+        opacity: 1;
+        transition: transform 1s, opacity 1s;
+      }
+      nav-link {
+        padding: 6px;
+        font-weight: 600;
+        &.active {
+            text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+@keyframes slide-down {
+}
+page-container page-content {
+  display: none;
+}
+
+page-container page-content.open {
+  display: block;
+}
+
+page-container page-content.left {
+  display: block;
+  transform: translateX(-100vw);
+}

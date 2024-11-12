@@ -1,3 +1,4 @@
+import { generateBarsIcon, generateCircle } from "./icons"
 import { PageContainer, PageContent, pageContainerGuard } from "./page"
 
 class NavLink extends HTMLElement{
@@ -13,9 +14,9 @@ class NavLink extends HTMLElement{
 
     handleClick(){
         this.animate([
-            {transform: "scale(1)"},
-            {transform: "scale(1.1)"},
-            {transform: "scale(1)"}
+            {scale: 1},
+            {scale: 1.1},
+            {scale: 1}
         ],{duration: 600})
         this.dispatchEvent(new CustomEvent('nav', {detail: {href: this.href }, bubbles: true}))
         const siblings = this.parentElement ? this.parentElement.children : []
@@ -32,6 +33,7 @@ class NavLink extends HTMLElement{
 class NavController extends HTMLElement {
     hydratedPages: Record<string, PageContent>
     pageContainer?: PageContainer
+    _busy = false
 
     connectedCallback() {
         window.addEventListener('nav', this.handleNavEvent)
@@ -71,6 +73,8 @@ class NavController extends HTMLElement {
     }
 
     internalNavigation = (id: string, initial = false) => {
+        
+        this.wait(10)
         //Check if page has been hydrated
         let hydratedPage = this.hydratedPages[id];
         
@@ -94,6 +98,13 @@ class NavController extends HTMLElement {
         }
     }
 
+    wait(t:number) {
+        while(this._busy) {
+            setTimeout(()=>t*2, t)
+        }
+        this._busy = true
+    }
+
     parseIdFromPath(): string{
         let id = location.pathname;
         while(id.indexOf('/') == 0){
@@ -104,25 +115,29 @@ class NavController extends HTMLElement {
     }
 
     changePages = (pageToOpen: PageContent, initial = false) => {
-        if (initial){
-            pageToOpen.classList.add('open')
-            return
-        }
-        let found;
-        for (const page in this.hydratedPages) {
-            const element = this.hydratedPages[page]
-            if (element.classList.contains('open')){
-                if (found == null){
-                    found = element
-                } else {
-                    element.classList.remove('open')
+        try{
+            if (initial){
+                pageToOpen.classList.add('open')
+                return
+            }
+            let found;
+            for (const page in this.hydratedPages) {
+                const element = this.hydratedPages[page]
+                if (element.classList.contains('open')){
+                    if (found == null){
+                        found = element
+                    } else {
+                        element.classList.remove('open')
+                    }
                 }
             }
-        }
-        if(found) {
-            if(found != pageToOpen) slideOut(found, pageToOpen)
-        } else {
-            slideIn(pageToOpen)
+            if(found) {
+                if(found != pageToOpen) slideOut(found, pageToOpen)
+            } else {
+                slideIn(pageToOpen)
+            }
+        } finally{
+            this._busy = false
         }
     }
 
@@ -144,7 +159,7 @@ const slideOut = (elementOut: HTMLElement, elementIn: HTMLElement) => {
     elementOut.animate([
         {transform: "translateX(0)"},
         {transform: "translateX(100vw)"}
-    ], {duration:600})
+    ], {duration:500})
     .onfinish = _ => {
         elementOut.classList.remove('open')
         if (elementIn != null) slideIn(elementIn)
@@ -156,11 +171,48 @@ const slideIn = (elem: HTMLElement) =>{
     elem.animate([
         {transform: "translateX(-100vw)"},
         {transform: "translateX(0)"}
-    ], {duration:600})
+    ], {duration:500})
     .onfinish = _ => {
         elem.classList.add('open')
         elem.classList.remove('left')
     }
 }
 
-export { NavLink, NavController }
+class MobileMenuButton extends HTMLElement{
+    grandParent: HTMLElement
+    connectedCallback() {
+        this.grandParent = this.parentElement?.parentElement || document.body
+        this.addEventListener('click', this.handleClick)
+    }
+    disconnectedCallback() {
+        this.removeEventListener('click', this.handleClick)
+    }
+
+    handleClick = event => {
+        const links = this.grandParent.querySelector('reactive-menu') as ReactiveMenu || undefined
+        if (links != undefined) {
+            links.toggle()
+        }
+    }
+}
+
+class ReactiveMenu extends HTMLElement {
+    connectedCallback() {
+        this.addEventListener('nav', this.closeMenu)
+    }
+    disconnectedCallback() {
+        this.removeEventListener('nav', this.closeMenu)
+    }
+    toggle(){
+        this.classList.toggle('open')
+    }
+    closeMenu() {
+        this.classList.remove('open')
+    }
+
+    get isOpen() {
+        return this.classList.contains('open')
+    }
+}
+
+export { NavLink, NavController, MobileMenuButton, ReactiveMenu }
