@@ -1,0 +1,34 @@
+@use "vars";
+
+@mixin cols($size) {
+    @if ($size) {
+        $size: "-" + $size;
+    } @else {
+        $size: "";
+    }
+    @for $i from 1 through 6 {
+        .grid.col#{$i}#{$size} {
+            grid-template-columns: repeat(#{$i}, 1fr);
+        }
+    }
+}
+
+@mixin gap($size) {
+    @if ($size) {
+        $size: "-" + $size;
+    } @else {
+        $size: "";
+    }
+    @each $p in vars.$px {
+        .grid.gap#{$p}#{$size} {
+            gap: #{$p}+ px;
+        }
+    }
+}
+
+.grid {
+    display: grid;
+}
+
+@include cols(null);
+@include gap(null);

@@ -2,26 +2,37 @@
     {
         "name": "home",
         "href": "/",
+        "inMenu": true,
         "meta": ""
     },
     {
         "name": "hotel",
         "href": "/hotel",
+        "inMenu": true,
         "meta": ""
     },
     {
         "name": "registration",
         "href": "/registration",
+        "inMenu": true,
         "meta": ""
     },
     {
         "name": "staff",
         "href": "/staff",
+        "inMenu": true,
         "meta": ""
     },
     {
         "name": "schedule",
         "href": "/schedule",
+        "inMenu": true,
+        "meta": ""
+    },
+    {
+        "name": "not-found",
+        "href": "/not-found",
+        "inMenu": false,
         "meta": ""
     }
 ]

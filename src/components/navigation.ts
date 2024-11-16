@@ -1,5 +1,5 @@
-import { generateBarsIcon, generateCircle } from "./icons"
 import { PageContainer, PageContent, pageContainerGuard } from "./page"
+import Semaphore from 'semaphore-async-await'
 
 class NavLink extends HTMLElement{
     href?: string
@@ -33,7 +33,12 @@ class NavLink extends HTMLElement{
 class NavController extends HTMLElement {
     hydratedPages: Record<string, PageContent>
     pageContainer?: PageContainer
-    _busy = false
+    #lock: Semaphore
+
+    constructor(){
+        super()
+        this.#lock = new Semaphore(1)
+    }
 
     connectedCallback() {
         window.addEventListener('nav', this.handleNavEvent)
@@ -62,9 +67,9 @@ class NavController extends HTMLElement {
         this.internalNavigation(id)
     }
 
-    handleNavEvent = (event) => {
+    handleNavEvent = async (event) => {
         let href = event.detail.href;
-        let id = href == null ? this.parseIdFromPath() : href.slice(1)
+        let id = href?.slice(1)
         if (id == ''){
             id = 'home'
         }
@@ -72,37 +77,33 @@ class NavController extends HTMLElement {
         this.internalNavigation(id)
     }
 
-    internalNavigation = (id: string, initial = false) => {
-        
-        this.wait(10)
+    internalNavigation = async (id: string, initial = false) => {
+        await this.#lock.acquire()
         //Check if page has been hydrated
-        let hydratedPage = this.hydratedPages[id];
-        
-        //Check for template
-        if (hydratedPage == null) {
-            let pageTemplate = document.getElementById(`${id}-page-template`);
-            if (pageTemplate != null) {
-                hydratedPage = this.hydratePage(id, pageTemplate);
+        try {
+            let hydratedPage = this.hydratedPages[id];
+            
+            //Check for template
+            if (hydratedPage == null) {
+                let pageTemplate = document.getElementById(`${id}-page-template`);
+                if (pageTemplate != null) {
+                    hydratedPage = this.hydratePage(id, pageTemplate);
+                }
             }
-        }
-        if (hydratedPage == null) {
-            console.log('Failed to find page.')
-            if (id == 'not-found') {
-                console.log('Not Found fallback page missing.')
-                alert('Error, failed to find page')
+            if (hydratedPage == null) {
+                console.log('Failed to find page.')
+                if (id == 'not-found') {
+                    console.log('Not Found fallback page missing.')
+                    alert('Error, failed to find page')
+                } else {
+                    this.internalNavigation('not-found')
+                }
             } else {
-                this.internalNavigation('not-found')
+                await this.changePages(hydratedPage, initial)
             }
-        } else {
-            this.changePages(hydratedPage, initial)
+        } finally {
+            this.#lock.release()
         }
-    }
-
-    wait(t:number) {
-        while(this._busy) {
-            setTimeout(()=>t*2, t)
-        }
-        this._busy = true
     }
 
     parseIdFromPath(): string{
@@ -114,30 +115,26 @@ class NavController extends HTMLElement {
         return arr[0]
     }
 
-    changePages = (pageToOpen: PageContent, initial = false) => {
-        try{
-            if (initial){
-                pageToOpen.classList.add('open')
-                return
-            }
-            let found;
-            for (const page in this.hydratedPages) {
-                const element = this.hydratedPages[page]
-                if (element.classList.contains('open')){
-                    if (found == null){
-                        found = element
-                    } else {
-                        element.classList.remove('open')
-                    }
+    changePages = async (pageToOpen: PageContent, initial = false) => {
+        if (initial){
+            pageToOpen.classList.add('open')
+            return
+        }
+        let found;
+        for (const page in this.hydratedPages) {
+            const element = this.hydratedPages[page]
+            if (element.classList.contains('open')){
+                if (found == null){
+                    found = element
+                } else {
+                    element.classList.remove('open')
                 }
             }
-            if(found) {
-                if(found != pageToOpen) slideOut(found, pageToOpen)
-            } else {
-                slideIn(pageToOpen)
-            }
-        } finally{
-            this._busy = false
+        }
+        if(found) {
+            if(found != pageToOpen) await slideOut(found, pageToOpen)
+        } else {
+            await slideIn(pageToOpen)
         }
     }
 
@@ -155,27 +152,33 @@ class NavController extends HTMLElement {
         }
     }
 }
-const slideOut = (elementOut: HTMLElement, elementIn: HTMLElement) => {
-    elementOut.animate([
+const slideOut = async (elementOut: HTMLElement, elementIn: HTMLElement):Promise<void> => {
+    const animation = elementOut.animate([
         {transform: "translateX(0)"},
         {transform: "translateX(100vw)"}
     ], {duration:500})
-    .onfinish = _ => {
+    animation.onfinish = _ => {
         elementOut.classList.remove('open')
-        if (elementIn != null) slideIn(elementIn)
+    }
+    await animation.finished
+    if (elementIn != null) {
+        await slideIn(elementIn)
     }
 }
 
-const slideIn = (elem: HTMLElement) =>{
-    elem.classList.add('left')
-    elem.animate([
-        {transform: "translateX(-100vw)"},
-        {transform: "translateX(0)"}
-    ], {duration:500})
-    .onfinish = _ => {
-        elem.classList.add('open')
-        elem.classList.remove('left')
-    }
+const slideIn = async (elem: HTMLElement):Promise<void> =>{
+    return new Promise<void>(resolve =>{
+        elem.classList.add('left')
+        elem.animate([
+            {transform: "translateX(-100vw)"},
+            {transform: "translateX(0)"}
+        ], {duration:500})
+        .onfinish = _ => {
+            elem.classList.add('open')
+            elem.classList.remove('left')
+            resolve()
+        }
+    })
 }
 
 class MobileMenuButton extends HTMLElement{

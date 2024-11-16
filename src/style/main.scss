@@ -3,12 +3,14 @@
 @use 'size';
 @use 'components';
 @use 'nav';
+@use 'layout';
 @use 'reactive';
 
 body {
   background: vars.$main-bg;
   color: vars.$green;
-  font-family: "Montserrat", arial, sans-serif;
+  // font-family: "Montserrat", arial, sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .fnt-bld {

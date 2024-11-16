@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+<% for (const view of views) { %> 
+RewriteRule ^/<%= view.name %>$ /index.html<% } %> 

@@ -1,16 +1,13 @@
 @use "size";
+@use "layout";
 
 @media screen and (min-width: 800px) {
   @include size.margin-padding("md");
   @include size.width("md");
-
+  @include layout.cols("md");
+  @include layout.gap("md");
   image-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  schedule-entry {
-    display: grid;
-    grid-template-columns: 90px 90px 590px 160px;
   }
 
   nav-controller {
@@ -27,7 +24,7 @@
         flex-direction: row;
         transform: none;
         position: static;
-        height:fit-content;
+        height: fit-content;
         opacity: 1;
       }
     }
@@ -37,15 +34,43 @@
 @media screen and (min-width: 1200px) {
   @include size.margin-padding("lg");
   @include size.width("lg");
+  @include layout.cols("lg");
+  @include layout.gap("lg");
 
   image-container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  showme-schedule {
+    max-width: fit-content;
+    schedule-entry {
+      margin: auto;
+      max-width: fit-content;
+      display: grid;
+      grid-template-columns:
+        minmax(90px, 100px)
+        minmax(90px, 100px)
+        minmax(590px, 700px)
+        minmax(140px, 150px);
+
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
+      .label {
+        grid-column: span 1;
+      }
+      .room {
+        order: 4;
+      }
+    }
   }
 }
 
 @media screen and (min-width: 1600px) {
   @include size.margin-padding("xl");
   @include size.width("xl");
+  @include layout.cols("xl");
+  @include layout.gap("xl");
 
   image-container {
     grid-template-columns: repeat(4, minmax(0, 1fr));

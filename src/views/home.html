@@ -1,14 +1,204 @@
-
-<div class="flex flex-col">
+<header>
     <h1>Show Me Showdown</h1>
     <div class="fnt-24">A West Coast Swing Dance Party</div>
-</div>
-<div class="bg-blue c-black p-24 fnt-24 fnt-bld w-fc rnd-4">
-    <div>WSDC Jack & Jill</div>
-    <div>Pro Am</div>
-    <div>Steal Me Challenge</div>
-    <div>Glow Party</div>
-    <div>Dirty Hour</div>
-    <div>Workshops</div>
-    <div>Social Dancing</div>
+</header>
+<section class="grid col1 col2-md">
+    <div class="bg-blue c-black p-24 fnt-24 fnt-bld w-fc rnd-4">
+        <div>WSDC Jack & Jill</div>
+        <div>Pro Am</div>
+        <div>Steal Me Challenge</div>
+        <div>Glow Party</div>
+        <div>Dirty Hour</div>
+        <div>Workshops</div>
+        <div>Social Dancing</div>
+    </div>
+</section>
+<div>
+    <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 359.2 238"
+        xml:space="preserve"
+        class="animate"
+    >
+        <style>
+            @keyframes pulse {
+                0%,
+                40%,
+                100% {
+                    transform: scale(1) translate(0, 0);
+                }
+                20% {
+                    transform: scale(1.1) translate(-1.5%, -1.5%);
+                }
+            }
+            .pulse {
+                animation: pulse 0.4s linear 2s infinite;
+            }
+            @keyframes spin {
+                0% {
+                    transform: rotate(0);
+                }
+                50% {
+                    transform: rotate(180deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            .spin {
+                transform-origin: 50%, 50%;
+                animation: spin 1s linear 2s infinite;
+            }
+        </style>
+        <defs>
+            <g id="speaker" class="pulse">
+                <circle style="fill: #afa9a0" cx="58" cy="58" r="58" />
+                <circle style="fill: #2d2d2d" cx="58" cy="58" r="49.7" />
+                <circle style="fill: #212120" cx="58" cy="58" r="17.9" />
+                <rect
+                    x="3.4"
+                    y="45.1"
+                    style="fill: #afa9a0"
+                    width="109"
+                    height="4"
+                />
+                <rect
+                    x="3.4"
+                    y="66.6"
+                    style="fill: #afa9a0"
+                    width="109"
+                    height="4"
+                />
+            </g>
+            <path
+                id="button"
+                style="fill: #3a3a38"
+                d="M0,0h-21.6v-6.7c0-3,2.5-5.5,5.5-5.5h10.6c3,0,5.5,2.5,5.5,5.5v6.7z"
+            />
+            <path
+                id="slider"
+                style="fill: #544e48"
+                d="M0,0c0-0.8,0.6-1.4,1.4-1.4h3c0.7,0,1.4,0.6,1.4,1.4v25c0,0.7-0.6,1.4-1.4,1.4h-3c-0.7,0-1.4-0.6-1.4-1.4v-25z"
+            />
+            <path
+                id="slider-knob"
+                style="fill: #2d2926"
+                d="M0,0c0.8,0,1.4,0.6,1.4,1.4v3c0,0.7-0.6,1.4-1.4,1.4h-6.8c-0.8,0-1.4-0.6-1.4-1.4v-3c0-0.7,0.6-1.4,1.4-1.4h6.8z"
+            />
+            <g id="inner-reel" class="spin">
+                <circle style="fill: #f8f4f1" cx="0" cy="0" r="7.9" />
+                <circle style="fill: #e2d9d3" cx="0" cy="0" r="7.1" />
+                <circle style="fill: #f8f4f1" cx="0" cy="0" r="6.7" />
+                <path
+                    d="M4.9,-3.5l-1.4-1.4c-0.1-0.1-0.1-0.1-0.2,0l-8.2,8.2c-0.1,0.1-0.1,0.1,0,0.2l1.4,1.4c0.1,0.1,0.1,0.1,0.2,0l8.2-8.2c0.1-0.1,0.1-0.1,0-0.2z"
+                />
+                <circle cx="0" cy="0" r="4.9" />
+                <circle style="fill: #f8f4f1" cx="0" cy="0" r="4.1" />
+                <path
+                    d="M3.1,-2.2c-0.2,0.2-0.5,0.1-0.7-0.2l0,0c-0.2-0.2-0.4-0.5-0.2-0.7l0.3-0.3c0.2-0.2,0.6-0.2,0.9,0l0,0c0.2,0.2,0.2,0.6,0,0.9l-0.3,0.3z"
+                />
+                <path
+                    d="M-3.1,2.2c0.2-0.2,0.5-0.1,0.7,0.2l0,0c0.2,0.2,0.4,0.5,0.2,0.7l-0.3,0.3c-0.2,0.2-0.6,0.2-0.9,0l0,0c-0.2-0.2-0.2-0.6,0-0.9l0.3-0.3z"
+                />
+                <path
+                    d="M2.2,3.1c-0.2-0.2-0.1-0.5,0.2-0.7l0,0c0.2-0.2,0.5-0.4,0.7-0.2l0.3,0.3c0.2,0.2,0.2,0.6,0,0.9l0,0c-0.2,0.2-0.6,0.2-0.9,0l-0.3-0.3z"
+                />
+                <path
+                    d="M-2.2-3.1c0.2,0.2,0.1,0.5-0.2,0.7l0,0c-0.2,0.2-0.5,0.4-0.7,0.2l-0.3-0.3c-0.2-0.2-0.2-0.6,0-0.9l0,0c0.2-0.2,0.6-0.2,0.9,0l0.3,0.3z"
+                />
+                <path
+                    d="M3.8,0.6c-0.3,0-0.4-0.3-0.4-0.6l0,0c0-0.3,0-0.6,0.4-0.6h0.4c0.3,0,0.6,0.3,0.6,0.6l0,0c0,0.3-0.3,0.6-0.6,0.6z"
+                />
+                <path
+                    d="M-3.8-0.6c0.3,0,0.4,0.3,0.4,0.6l0,0c0,0.3,0,0.6-0.4,0.6h-0.4c-0.3,0-0.6-0.3-0.6-0.6l0,0c0-0.3,0.3-0.6,0.6-0.6z"
+                />
+                <path
+                    d="M-0.6,3.8c0-0.3,0.3-0.4,0.6-0.4l0,0c0.3,0,0.6,0,0.6,0.4v0.4c0,0.3-0.3,0.6-0.6,0.6l0,0c-0.3,0-0.6-0.3-0.6-0.6z"
+                />
+                <path
+                    d="M0.6-3.8c0,0.3-0.3,0.4-0.6,0.4l0,0c-0.3,0-0.6,0-0.6-0.4v-0.4c0-0.3,0.3-0.6,0.6-0.6l0,0c0.3,0,0.6,0.3,0.6,0.6"
+                />
+            </g>
+            <g id="tweeter">
+                <circle style="fill: #afa9a0" cx="12" cy="12" r="12" />
+                <circle style="fill: #2d2d2d" cx="12" cy="12" r="10" />
+                <circle style="fill: #212120" cx="12" cy="12" r="3.6" />
+                <rect
+                    x="1"
+                    y="9.6"
+                    style="fill: #afa9a0"
+                    width="21.9"
+                    height="0.8"
+                />
+                <rect
+                    x="1"
+                    y="13.9"
+                    style="fill: #afa9a0"
+                    width="21.9"
+                    height="0.8"
+                />
+            </g>
+        </defs>
+        <path
+            style="fill: #3a3a38"
+            d="M355.8,0h-352.4c-1.9,0-3.4,1.5-3.4,3.4v74.3c0,1.9,1.5,3.4,3.4,3.4h5.3v-61.9c0-1.7,1.3-3,3-3h335.8c1.7,0,3,1.3,3,3v61.9h5.3c1.9,0,3.4-1.5,3.4-3.4v-74.3c0,-1.9,-1.5,-3.4,-3.4,-3.4z"
+        />
+        <use href="#button" x="145" y="67" />
+        <use href="#button" x="168" y="67" />
+        <use href="#button" x="191" y="67" />
+        <use href="#button" x="214" y="67" />
+        <use href="#button" x="237" y="67" />
+        <path
+            style="fill: #68635c"
+            d="M352.1,93.2h-345v141.4c0,1.8,1.5,3.2,3.2,3.2h338.5c1.8,0,3.2-1.5,3.2-3.2v-141.4z"
+        />
+        <path
+            style="fill: #918d87"
+            d="M348.9,63.9h-338.6c-1.8,0-3.2,1.5-3.2,3.2v25.4h345v-25.4c0-1.8-1.5-3.2-3.2-3.2z"
+        />
+        <rect x="7.1" y="92.5" style="fill: #232322" width="345" height="4" />
+        <rect
+            x="138.5"
+            y="63.9"
+            style="fill: #7f796f"
+            width="82.1"
+            height="167.9"
+        />
+        <rect
+            x="55.1"
+            y="67.8"
+            style="fill: #545454"
+            width="247.9"
+            height="20.7"
+        />
+        <use href="#tweeter" x="19.5" y="66" />
+        <use href="#tweeter" x="315.5" y="66" />
+        <use href="#speaker" x="18.3" y="105" />
+        <use href="#speaker" x="225.1" y="105" />
+        <path
+            style="fill: #999992"
+            d="M215.2,140h-71.5c-0.8,0-1.5,0.7-1.5,1.5v47.7c0,0.8,0.7,1.5,1.5,1.5h71.5c0.8,0,1.5-0.7,1.5-1.5v-47.7c0,-0.8,-0.7-1.5-1.5-1.5z"
+        />
+        <path
+            style="fill: #3f3f3f"
+            d="M212.9,153.5h-66.8c-0.7,0-1.3,0.6-1.3,1.3v17.5c0,0.7,0.6,1.3,1.3,1.3h66.8c0.7,0,1.3-0.6,1.3-1.3v-17.5c0-0.7-0.6-1.3-1.3,-1.3z"
+        />
+        <path
+            style="fill: #212120"
+            d="M179.7,153.5h-31.4c-1.9,2.9-3,6.4-3,10.2c0,3.6,1,7,2.8,9.9h31.7c1.8-2.9,2.8-6.3,2.8-9.9c0.1-3.8-1-7.3,-2.9-10.2z"
+        />
+        <use href="#inner-reel" x="164" y="163.7" />
+        <use href="#inner-reel" x="195" y="163.7" />
+        <use href="#slider" x="145.8" y="100" />
+        <use href="#slider-knob" x="152" y="110" />
+        <use href="#slider" x="161.3" y="100" />
+        <use href="#slider-knob" x="167.5" y="104" />
+        <use href="#slider" x="176.8" y="100" />
+        <use href="#slider-knob" x="183" y="106" />
+        <use href="#slider" x="192.3" y="100" />
+        <use href="#slider-knob" x="198.5" y="108" />
+        <use href="#slider" x="207.8" y="100" />
+        <use href="#slider-knob" x="214" y="120" />
+    </svg>
 </div>

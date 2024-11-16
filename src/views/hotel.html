@@ -1,12 +1,26 @@
-<img src="/img/hilton-foyer.webp" alt="Foyer" class="w100">
-<div class="mt-5" >
+<header>
     <h1 class="text-2xl font-bold">HILTON ST. LOUIS - AIRPORT HOTEL</h1>
-    <p class="mt-3">Hilton St. Louis Airport in St. Louis, Missouri is located across from St. Louis Lambert International Airport, just minutes from downtown.</p>
-    <p class="mt-3">Our amenities include our hotel restaurant, World's Apart, featuring a full menu or a hot Hilton diverse breakfast, lunch and dinner, and access to our complimentary 24-hour business and fitness centers.</p>
-    <p class="mt-3">PET FRIENDLY!</p>
-    <p class="mt-3">FREE 24 HOUR SHUTTLE TO/FROM LAMBERT ST. LOUIS AIRPORT!</p>
-    <a href="<%= contact.address.googleMapUrl %>">
-        <p class="mt-3"><%= contact.address.line1.toUpperCase() %></p>
-        <p><%= contact.address.line2.toUpperCase() %></p>
-    </a>
-</div>
+</header>
+<section class="grid col1 col2-md gap18">
+    <img src="/img/hilton-foyer.webp" alt="Foyer" class="w100" />
+    <div class="mt-5">
+        <p class="mt-3">
+            Hilton St. Louis Airport in St. Louis, Missouri is located across
+            from St. Louis Lambert International Airport, just minutes from
+            downtown.
+        </p>
+        <p class="mt-3">
+            Our amenities include our hotel restaurant, World's Apart, featuring
+            a full menu or a hot Hilton diverse breakfast, lunch and dinner, and
+            access to our complimentary 24-hour business and fitness centers.
+        </p>
+        <p class="mt-3">PET FRIENDLY!</p>
+        <p class="mt-3">
+            FREE 24 HOUR SHUTTLE TO/FROM LAMBERT ST. LOUIS AIRPORT!
+        </p>
+        <a href="<%= contact.address.googleMapUrl %>">
+            <p class="mt-3"><%= contact.address.line1.toUpperCase() %></p>
+            <p><%= contact.address.line2.toUpperCase() %></p>
+        </a>
+    </div>
+</section>
