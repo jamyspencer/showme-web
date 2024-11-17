@@ -1,6 +1,16 @@
+import { start } from "repl";
+
 type TimeFilterFunction = (a: ScheduleEntry, n: Date) => boolean;
 type FilterFunction = (a: ScheduleEntry) => boolean
-
+const days = {
+    0: 'Sun',
+    1: 'Mon',
+    2: 'Tues',
+    3: 'Wed',
+    4: 'Thurs',
+    5: 'Fri',
+    6: 'Sat'
+}
 class ShowmeSchedule extends HTMLElement {
     isHydrated = false
     startDates = new Set<Date>()
@@ -18,6 +28,7 @@ class ShowmeSchedule extends HTMLElement {
         this.todayFilterRadio.onclick = this.#filterToday
         this.compFilterRadio.onclick = this.#filterComp
         this.workshopFilterRadio.onclick = this.#filterWorkshop
+        this.#childObserver.observe(this, {childList: true, subtree: true})
     }
     disconnectedCallback() {
         this.nowFilterRadio.onclick = null
@@ -40,23 +51,39 @@ class ShowmeSchedule extends HTMLElement {
         this.prepend(filterDiv)
         this.isHydrated = true
     }
+    #childObserver = new MutationObserver(mutationRecord => {
+        const list = mutationRecord.map(record => record.target)
+        this.#createDayMarkers(list)
+    })
     #filter = () => {
         const nodes = this.querySelectorAll('schedule-entry')
         const now = new Date()
+        const datesToKeep: Set<string> = new Set()
         for (const node of nodes) {
             if (!scheduleEntryGuard(node)) continue //shortcircuit
             if (!this.timeFilter || this.timeFilter(node, now)){
                 if (!this.typeFilter || this.typeFilter(node)){
                     node.classList.remove('filtered')
+                    const startDate = node.start
+                    if (startDate) {
+                        datesToKeep.add(`${days[startDate.getDay()]} ${startDate.getMonth()}/${startDate.getDate()}`)
+                    }
                 } else {
                     node.classList.add('filtered')
                 }
             } else {
                 //fails time filter, don't check others
                 node.classList.add('filtered')
-            }
-            
+            } 
         }
+        this.querySelectorAll('.day-marker').forEach(marker => {
+            if(marker.textContent && datesToKeep.has(marker.textContent)){
+                marker.classList.remove('filtered')
+            } else {
+                marker.classList.add('filtered')
+            }
+        })
+
     }
     #filterNow = () => {
         if (this.nowFilterRadio.checked){
@@ -102,8 +129,33 @@ class ShowmeSchedule extends HTMLElement {
             child.classList.remove('filtered')
         }
     }
+
+    #createDayMarkers = (list: Node[]): void => {
+        const daySet: Set<string> = new Set()
+        
+        for (const node of list) {
+            if(! scheduleEntryGuard(node)) continue //short-circuit
+            const startDate = node.start
+            if(startDate === undefined) continue
+            const len = daySet.size
+            const val = `${days[startDate.getDay()]} ${startDate.getMonth()}/${startDate.getDate()}`
+            daySet.add(val)
+            if(daySet.size > len){
+                const dayMarker = document.createElement('div')
+                dayMarker.classList.add('day-marker')
+                dayMarker.innerText = val
+                node.before(dayMarker)
+            }
+        }
+    }
 }
 
+const millisecondsPerDay = 24 * 60 * 60 * 1000;
+const roundedDay = (dateIn: Date): Date => {
+    const timestamp = dateIn.getTime();
+    const roundedTimestamp = Math.round(timestamp / millisecondsPerDay) * millisecondsPerDay;
+    return new Date(roundedTimestamp);
+}
 
 const formatTime = (date: Date) => {
     const hour = date.getHours()

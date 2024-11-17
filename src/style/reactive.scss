@@ -1,5 +1,6 @@
 @use "size";
 @use "layout";
+@use "vars";
 
 @media screen and (min-width: 800px) {
   @include size.margin-padding("md");
@@ -42,7 +43,7 @@
   }
   showme-schedule {
     max-width: fit-content;
-    schedule-entry {
+    schedule-entry, day-marker {
       margin: auto;
       max-width: fit-content;
       display: grid;
@@ -51,7 +52,8 @@
         minmax(90px, 100px)
         minmax(590px, 700px)
         minmax(140px, 150px);
-
+    }
+    schedule-entry {
       border-top: none;
       border-left: none;
       border-right: none;
@@ -62,6 +64,13 @@
       .room {
         order: 4;
       }
+    }
+    .day-marker {
+      border-radius: 0;
+    }
+    .filters{
+      max-width: 1000px;
+      margin: auto;
     }
   }
 }

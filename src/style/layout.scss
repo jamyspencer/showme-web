@@ -35,4 +35,11 @@
 
 .flex {
     display: flex;
+
+    &.col {
+        flex-direction: column;
+    }
+    &.jcl {
+        justify-content: left;
+    }
 }
