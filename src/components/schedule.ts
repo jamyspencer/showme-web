@@ -39,7 +39,7 @@ class ShowmeSchedule extends HTMLElement {
     hydrate() {
         if (this.isHydrated) return
         const filterDiv = document.createElement("div")
-        filterDiv.classList.add('filters', 'grid', 'col2')
+        filterDiv.classList.add('filters', 'grid', 'col2', 'w100')
 
         const n = wrapCheckBox(this.nowFilterRadio, 'time', 'now', 'Right Now')
         const t = wrapCheckBox(this.todayFilterRadio, 'time', 'today', 'Today')
@@ -162,7 +162,7 @@ const formatTime = (date: Date) => {
     const hourString = hour == 0 ? "12" : hour > 12 ? `${hour - 12}` : `${hour}`
     const min = date.getMinutes()
     const minString = min < 10 ? `0${min}` : `${min}`
-    return `${hourString}:${minString} ${hour > 12 ? "PM" : "AM"}`
+    return `${hourString}:${minString} ${hour >= 12 ? "PM" : "AM"}`
 }
 
 const isComp = (entry: ScheduleEntry): boolean => {

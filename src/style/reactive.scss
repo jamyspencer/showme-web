@@ -67,10 +67,10 @@
     }
     .day-marker {
       border-radius: 0;
+      flex-shrink: 2;
     }
     .filters{
-      max-width: 1000px;
-      margin: auto;
+      max-width: 800px;
     }
   }
 }

@@ -11,6 +11,7 @@ image-holder {
   font-size: 1.4rem;
 }
 showme-schedule {
+  display: grid;
   schedule-entry {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
