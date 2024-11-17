@@ -9,7 +9,7 @@ import views from "./src/data/views.json"
 import { resolve } from "node:path"
 
 export default defineConfig({
-    base: "",
+    base: "/",
     root: "src",
     build: {
         outDir: "../dist",

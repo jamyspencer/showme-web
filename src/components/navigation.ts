@@ -31,7 +31,7 @@ class NavLink extends HTMLElement{
 }
 
 class NavController extends HTMLElement {
-    hydratedPages: Record<string, PageContent>
+    hydratedPages: Record<string, PageContent> = {}
     pageContainer?: PageContainer
     #lock: Semaphore
 

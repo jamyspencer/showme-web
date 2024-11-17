@@ -18,3 +18,11 @@ body {
 }
 
 
+input[type="checkbox"]{
+  width: 16px;
+  height: 16px;
+  outline: 2px solid vars.$green;
+  // content: "";
+  accent-color: vars.$green;
+  border-radius: 4px;
+}

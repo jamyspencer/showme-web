@@ -23,5 +23,8 @@ showme-schedule {
     .label {
       grid-column: span 3;
     }
+    &.filtered {
+      display: none;
+    }
   }
 }
