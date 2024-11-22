@@ -27,3 +27,25 @@ input[type="checkbox"]{
   accent-color: vars.$green;
   border-radius: 4px;
 }
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 4px #054554;
+  &:hover {
+    transform: scale(1.04);
+    &:focus {
+      transform: translateY(4px);
+      box-shadow: 0 .2px #054554;
+    }
+  }
+}
+
+firework-element {
+  position: relative;
+  width: fit-content;
+  .firework {
+    position: absolute;
+  }
+}

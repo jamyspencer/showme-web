@@ -12,6 +12,7 @@ image-holder {
 }
 showme-schedule {
   display: grid;
+  min-width: 100%;
   schedule-entry {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;

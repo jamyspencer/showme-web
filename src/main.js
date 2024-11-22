@@ -2,6 +2,7 @@ import { NavLink, NavController, MobileMenuButton, ReactiveMenu } from './compon
 import { ImageContainer, ImageHolder } from './components/image'
 import { ShowmeSchedule, ScheduleEntry } from './components/schedule'
 import { PageContent, PageContainer } from './components/page' 
+import { FireworkElement } from './components/fireworks'
 
 customElements.define('nav-link', NavLink)
 customElements.define('nav-controller', NavController)
@@ -13,3 +14,4 @@ customElements.define('page-content', PageContent)
 customElements.define('page-container', PageContainer)
 customElements.define('mobile-menu-button', MobileMenuButton)
 customElements.define('reactive-menu', ReactiveMenu)
+customElements.define('firework-element', FireworkElement)

@@ -1,4 +1,3 @@
-import { start } from "repl";
 
 type TimeFilterFunction = (a: ScheduleEntry, n: Date) => boolean;
 type FilterFunction = (a: ScheduleEntry) => boolean
@@ -39,7 +38,7 @@ class ShowmeSchedule extends HTMLElement {
     hydrate() {
         if (this.isHydrated) return
         const filterDiv = document.createElement("div")
-        filterDiv.classList.add('filters', 'grid', 'col2', 'w100')
+        filterDiv.classList.add('filters', 'grid', 'col2', 'w100', 'py-8')
 
         const n = wrapCheckBox(this.nowFilterRadio, 'time', 'now', 'Right Now')
         const t = wrapCheckBox(this.todayFilterRadio, 'time', 'today', 'Today')
