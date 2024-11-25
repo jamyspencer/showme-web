@@ -15,7 +15,13 @@ export default defineConfig({
         outDir: "../dist",
         assetsDir: "",
         emptyOutDir: true,
-    },
+    },css: {
+        preprocessorOptions: {
+          scss: {
+            api: 'modern-compiler', // or "modern", "legacy"
+          },
+        },
+      },
     plugins: [
         ViteMinifyPlugin({}),
         ViteEjsPlugin({
