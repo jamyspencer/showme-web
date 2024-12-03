@@ -32,12 +32,13 @@ input[type="checkbox"]{
   display: inline-block;
   text-decoration: none;
   border-radius: 6px;
-  box-shadow: 0 4px #054554;
+  box-shadow: 0 6px #054554;
   &:hover {
-    transform: scale(1.04);
+    transform: translateY(-1px);
+    box-shadow: 0 7px #054554;
     &:focus {
-      transform: translateY(4px);
-      box-shadow: 0 .2px #054554;
+      transform: translateY(5px);
+      box-shadow: 0 1px #054554;
     }
   }
 }

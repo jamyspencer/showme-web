@@ -1,5 +1,3 @@
-import { get } from "http"
-
 class FireworkElement extends HTMLElement {
     running: boolean = false
     connectedCallback() {

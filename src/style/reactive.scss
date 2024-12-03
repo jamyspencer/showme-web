@@ -43,8 +43,8 @@
   }
   showme-schedule {
     max-width: fit-content;
+    margin: auto;
     schedule-entry, day-marker {
-      margin: auto;
       max-width: fit-content;
       display: grid;
       grid-template-columns:
@@ -58,6 +58,7 @@
       border-left: none;
       border-right: none;
       border-radius: 0;
+      margin: 6px 0 0 0;
       .label {
         grid-column: span 1;
       }
